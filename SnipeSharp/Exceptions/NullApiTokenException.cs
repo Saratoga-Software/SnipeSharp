@@ -16,9 +16,5 @@ namespace SnipeSharp.Exceptions
         public NullApiTokenException(string message, Exception innerException) : base(message, innerException)
         {
         }
-
-        protected NullApiTokenException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

@@ -16,9 +16,5 @@ namespace SnipeSharp.Exceptions
         public RequiredValueIsNullException(string message, Exception innerException) : base(message, innerException)
         {
         }
-
-        protected RequiredValueIsNullException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

@@ -16,9 +16,5 @@ namespace SnipeSharp.Exceptions
         public InvalidEndpointException(string message, Exception innerException) : base(message, innerException)
         {
         }
-
-        protected InvalidEndpointException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

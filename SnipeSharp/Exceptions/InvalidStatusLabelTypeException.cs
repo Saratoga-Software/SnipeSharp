@@ -16,9 +16,5 @@ namespace SnipeSharp.Exceptions
         public InvalidStatusLabelTypeException(string message, Exception innerException) : base(message, innerException)
         {
         }
-
-        protected InvalidStatusLabelTypeException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

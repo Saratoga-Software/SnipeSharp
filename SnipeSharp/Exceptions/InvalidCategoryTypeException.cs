@@ -16,9 +16,5 @@ namespace SnipeSharp.Exceptions
         public InvalidCategoryTypeException(string message, Exception innerException) : base(message, innerException)
         {
         }
-
-        protected InvalidCategoryTypeException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

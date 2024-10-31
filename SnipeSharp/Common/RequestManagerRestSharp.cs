@@ -1,9 +1,10 @@
 ﻿using SnipeSharp.Endpoints.Models;
 using SnipeSharp.Endpoints.SearchFilters;
 using RestSharp;
-using RestSharp.Authenticators;
 using SnipeSharp.Endpoints;
 using SnipeSharp.Exceptions;
+using RestSharp.Authenticators.OAuth2;
+using System;
 
 namespace SnipeSharp.Common
 {
@@ -13,19 +14,23 @@ namespace SnipeSharp.Common
         
         public IQueryParameterBuilder QueryParameterBuilder { get; set; } = new QueryParameterBuilder();
         
+        private readonly RestClientOptions _restClientOptions;
         private readonly RestClient _client;
 
         public RequestManagerRestSharp(ApiSettings apiSettings)
         {
             this.ApiSettings = apiSettings;
-            this._client = new RestClient();
+            this._restClientOptions = new RestClientOptions();
+            CheckApiTokenAndUrl();
+
+            this._client = new RestClient(this._restClientOptions);
             this._client.AddDefaultHeader("Accept", "application/json");
         }
 
         public string Delete(string path)
         {
             CheckApiTokenAndUrl();
-            var req = new RestRequest(Method.DELETE) {Resource = path};
+            var req = new RestRequest(path, Method.Delete);
             var res = _client.Execute(req);
 
             return res.Content;
@@ -37,7 +42,7 @@ namespace SnipeSharp.Common
             var req = new RestRequest
             {
                 Resource = path,
-                Timeout = 200000
+                Timeout = TimeSpan.FromMilliseconds(200000)
             };
             // Test
             var res = _client.Execute(req);
@@ -51,7 +56,7 @@ namespace SnipeSharp.Common
             var req = new RestRequest
             {
                 Resource = path,
-                Timeout = 200000
+                Timeout = TimeSpan.FromMilliseconds(200000)
             };
 
             var filters = this.QueryParameterBuilder.GetParameters(filter);
@@ -69,7 +74,7 @@ namespace SnipeSharp.Common
         public string Post(string path, ICommonEndpointModel item)
         {
             CheckApiTokenAndUrl();
-            var req = new RestRequest(Method.POST) {Resource = path};
+            var req = new RestRequest(path, Method.Post);
 
             var parameters = this.QueryParameterBuilder.GetParameters(item);
 
@@ -88,7 +93,7 @@ namespace SnipeSharp.Common
         {
             // TODO: Make one method for post and put.
             CheckApiTokenAndUrl();
-            var req = new RestRequest(Method.PUT) {Resource = path};
+            var req = new RestRequest(path, Method.Put);
 
             var parameters = this.QueryParameterBuilder.GetParameters(item);
 
@@ -116,14 +121,14 @@ namespace SnipeSharp.Common
                 throw new NullApiTokenException("No API Token Set");
             }
 
-            if (_client.BaseUrl == null)
+            if (_restClientOptions.BaseUrl == null)
             {
-                _client.BaseUrl = ApiSettings.BaseUrl;
+                _restClientOptions.BaseUrl = ApiSettings.BaseUrl;
             }
 
-            if (_client.Authenticator == null)
+            if (_restClientOptions.Authenticator == null)
             {
-                _client.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(ApiSettings.ApiToken, "Bearer");
+                _restClientOptions.Authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(ApiSettings.ApiToken, "Bearer");
             }
         }
     }

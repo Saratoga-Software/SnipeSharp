@@ -33,16 +33,16 @@ namespace SnipeSharp
         // Test 
         private readonly IRequestManager _reqManager;
 
-        public SnipeItApi()
+        public SnipeItApi(ApiSettings mySettings)
         {
+            this.ApiSettings = mySettings;
             this._reqManager = new RequestManagerRestSharp(ApiSettings);
-            
             this.AssetManager = new AssetEndpointManager(this._reqManager);
             this.UserManager = new UserEndpointManager(this._reqManager);
             this.StatusLabelManager = new StatusLabelEndpointManager(this._reqManager);
         }
 
-        public ApiSettings ApiSettings { get; } = new ApiSettings();
+        public ApiSettings ApiSettings { get; }
 
         public AssetEndpointManager AssetManager { get; }
         

@@ -16,9 +16,5 @@ namespace SnipeSharp.Exceptions
         public FailedToDetectObjectException(string message, Exception innerException) : base(message, innerException)
         {
         }
-
-        protected FailedToDetectObjectException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using SnipeSharp.Endpoints.Models;
 using SnipeSharp.JsonConverters;
 
@@ -15,7 +15,7 @@ namespace SnipeSharp.Tests
         public void DeserializeAsset_ValidObject_ReturnAsset()
         {
             string obj = File.ReadAllText(@"..\..\TestObjs\asset.json");
-            ICommonEndpointModel result = JsonConvert.DeserializeObject<ICommonEndpointModel>(obj, new DetectJsonObjectType());
+            ICommonEndpointModel result = JsonSerializer.Deserialize<ICommonEndpointModel>(obj, new DetectJsonObjectType());
             Assert.IsInstanceOfType(result, typeof(Asset));
         }
 
@@ -23,7 +23,7 @@ namespace SnipeSharp.Tests
         public void DeserializeModel_ValidObject_ReturnAsset()
         {
             string obj = File.ReadAllText(@"..\..\TestObjs\model.json");
-            ICommonEndpointModel result = JsonConvert.DeserializeObject<ICommonEndpointModel>(obj, new DetectJsonObjectType());
+            ICommonEndpointModel result = JsonSerializer.Deserialize<ICommonEndpointModel>(obj, new DetectJsonObjectType());
             Assert.IsInstanceOfType(result, typeof(Model));
         }
 
@@ -31,7 +31,7 @@ namespace SnipeSharp.Tests
         public void DeserializeCompany_ValidObject_ReturnAsset()
         {
             string obj = File.ReadAllText(@"..\..\TestObjs\company.json");
-            ICommonEndpointModel result = JsonConvert.DeserializeObject<ICommonEndpointModel>(obj, new DetectJsonObjectType());
+            ICommonEndpointModel result = JsonSerializer.Deserialize<ICommonEndpointModel>(obj, new DetectJsonObjectType());
             Assert.IsInstanceOfType(result, typeof(Company));
         }
 
@@ -39,7 +39,7 @@ namespace SnipeSharp.Tests
         public void DeserializeLocation_ValidObject_ReturnAsset()
         {
             string obj = File.ReadAllText(@"..\..\TestObjs\location.json");
-            ICommonEndpointModel result = JsonConvert.DeserializeObject<ICommonEndpointModel>(obj, new DetectJsonObjectType());
+            ICommonEndpointModel result = JsonSerializer.Deserialize<ICommonEndpointModel>(obj, new DetectJsonObjectType());
             Assert.IsInstanceOfType(result, typeof(Location));
         }
 
@@ -47,7 +47,7 @@ namespace SnipeSharp.Tests
         public void DeserializeAccessory_ValidObject_ReturnAsset()
         {
             string obj = File.ReadAllText(@"..\..\TestObjs\accessory.json");
-            ICommonEndpointModel result = JsonConvert.DeserializeObject<ICommonEndpointModel>(obj, new DetectJsonObjectType());
+            ICommonEndpointModel result = JsonSerializer.Deserialize<ICommonEndpointModel>(obj, new DetectJsonObjectType());
             Assert.IsInstanceOfType(result, typeof(Accessory));
         }
 
@@ -55,7 +55,7 @@ namespace SnipeSharp.Tests
         public void DeserializeConsumable_ValidObject_ReturnAsset()
         {
             string obj = File.ReadAllText(@"..\..\TestObjs\consumable.json");
-            ICommonEndpointModel result = JsonConvert.DeserializeObject<ICommonEndpointModel>(obj, new DetectJsonObjectType());
+            ICommonEndpointModel result = JsonSerializer.Deserialize<ICommonEndpointModel>(obj, new DetectJsonObjectType());
             Assert.IsInstanceOfType(result, typeof(Consumable));
         }
 
@@ -63,7 +63,7 @@ namespace SnipeSharp.Tests
         public void DeserializeComponent_ValidObject_ReturnAsset()
         {
             string obj = File.ReadAllText(@"..\..\TestObjs\component.json");
-            ICommonEndpointModel result = JsonConvert.DeserializeObject<ICommonEndpointModel>(obj, new DetectJsonObjectType());
+            ICommonEndpointModel result = JsonSerializer.Deserialize<ICommonEndpointModel>(obj, new DetectJsonObjectType());
             Assert.IsInstanceOfType(result, typeof(Component));
         }
 
@@ -71,7 +71,7 @@ namespace SnipeSharp.Tests
         public void DeserializeUser_ValidObject_ReturnAsset()
         {
             string obj = File.ReadAllText(@"..\..\TestObjs\user.json");
-            ICommonEndpointModel result = JsonConvert.DeserializeObject<ICommonEndpointModel>(obj, new DetectJsonObjectType());
+            ICommonEndpointModel result = JsonSerializer.Deserialize<ICommonEndpointModel>(obj, new DetectJsonObjectType());
             Assert.IsInstanceOfType(result, typeof(User));
         }
 
@@ -79,7 +79,7 @@ namespace SnipeSharp.Tests
         public void DeserializeStatusLabel_ValidObject_ReturnAsset()
         {
             string obj = File.ReadAllText(@"..\..\TestObjs\statuslabel.json");
-            ICommonEndpointModel result = JsonConvert.DeserializeObject<ICommonEndpointModel>(obj, new DetectJsonObjectType());
+            ICommonEndpointModel result = JsonSerializer.Deserialize<ICommonEndpointModel>(obj, new DetectJsonObjectType());
             Assert.IsInstanceOfType(result, typeof(StatusLabel));
         }
 
@@ -87,7 +87,7 @@ namespace SnipeSharp.Tests
         public void DeserializeStatusLicense_ValidObject_ReturnAsset()
         {
             string obj = File.ReadAllText(@"..\..\TestObjs\license.json");
-            ICommonEndpointModel result = JsonConvert.DeserializeObject<ICommonEndpointModel>(obj, new DetectJsonObjectType());
+            ICommonEndpointModel result = JsonSerializer.Deserialize<ICommonEndpointModel>(obj, new DetectJsonObjectType());
             Assert.IsInstanceOfType(result, typeof(License));
         }
 
@@ -95,7 +95,7 @@ namespace SnipeSharp.Tests
         public void DeserializeStatusCategory_ValidObject_ReturnAsset()
         {
             string obj = File.ReadAllText(@"..\..\TestObjs\category.json");
-            ICommonEndpointModel result = JsonConvert.DeserializeObject<ICommonEndpointModel>(obj, new DetectJsonObjectType());
+            ICommonEndpointModel result = JsonSerializer.Deserialize<ICommonEndpointModel>(obj, new DetectJsonObjectType());
             Assert.IsInstanceOfType(result, typeof(Category));
         }
 
@@ -103,7 +103,7 @@ namespace SnipeSharp.Tests
         public void DeserializeStatusManufacturer_ValidObject_ReturnAsset()
         {
             string obj = File.ReadAllText(@"..\..\TestObjs\manufacturer.json");
-            ICommonEndpointModel result = JsonConvert.DeserializeObject<ICommonEndpointModel>(obj, new DetectJsonObjectType());
+            ICommonEndpointModel result = JsonSerializer.Deserialize<ICommonEndpointModel>(obj, new DetectJsonObjectType());
             Assert.IsInstanceOfType(result, typeof(Manufacturer));
         }
     }

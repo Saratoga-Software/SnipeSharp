@@ -16,9 +16,5 @@ namespace SnipeSharp.Exceptions
         public NullApiBaseUrlException(string message, Exception innerException) : base(message, innerException)
         {
         }
-
-        protected NullApiBaseUrlException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }
